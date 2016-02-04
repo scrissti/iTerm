@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <link rel='stylesheet' href='/stylesheets/style.css' />
+    <link rel="stylesheet" href='/bootstrap-3.3.2-dist/css/bootstrap-theme.min.css' />
+    <link rel='stylesheet' href='/bootstrap-3.3.2-dist/css/bootstrap.min.css' />
+      <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
+ </head>
+  <body>
+Welcome  <%=user.fb.firstName %>.
+    <div>
+        <div class="led <%if (parseInt(state)==0) {%> led-red <%} else {%> led-green<%}%>"></div>
+    	<h1>Temp <span class="temp"><%=temp+calibration %></span></h1>
+        <p>
+        </p>
+        <div class="input-group" style="width:250px">
+          <span class="input-group-btn">
+              <button type="button" class="btn btn-danger btn-number btn-lg"  data-type="minus" data-field="progr">
+                <span class="glyphicon glyphicon-minus"></span>
+              </button>
+          </span>
+          <input type="text" name="progr" class="form-control input-number input-lg" value=<%=progr %> min="0" max="30">
+          <span class="input-group-btn">
+              <button type="button" class="btn btn-success btn-number btn-lg" data-type="plus" data-field="progr">
+                  <span class="glyphicon glyphicon-plus"></span>
+              </button>
+          </span>
+      </div>
+Last update <span class="update"><%=Math.floor((new Date()-new Date(update))/1000) %></span> seconds ago.
+        <br>
+<a id="showcali" onclick="document.getElementById('cali').style.display='';document.getElementById('hidecali').style.display='';this.style.display='none'" >Calibration</a>
+<a id="hidecali" onclick="document.getElementById('cali').style.display='none';document.getElementById('showcali').style.display='';this.style.display='none'"   style="display:none">Hide calibration</a>
+
+        <div id="cali" class="input-group" style="width:100px; display:none">
+          <span class="input-group-btn">
+              <button type="button" class="btn btn-danger btn-number btn-xs"  data-type="minus" data-field="calibration">
+                <span class="glyphicon glyphicon-minus"></span>
+              </button>
+          </span>
+          <input type="text" name="calibration" class="form-control input-number input-xs" value=<%=calibration %> min="-5" max="5">
+          <span class="input-group-btn">
+              <button type="button" class="btn btn-success btn-number btn-xs" data-type="plus" data-field="calibration">
+                  <span class="glyphicon glyphicon-plus"></span>
+              </button>
+          </span>
+      </div>
+      <br>
+<a id="showdelta" onclick="document.getElementById('delt').style.display='';document.getElementById('hidedelta').style.display='';this.style.display='none'" >Delta</a>
+<a id="hidedelta" onclick="document.getElementById('delt').style.display='none';document.getElementById('showdelta').style.display='';this.style.display='none'"   style="display:none">Hide Delta</a>
+
+      <div id="delt" class="input-group" style="width:100px; display:none">
+        <span class="input-group-btn">
+            <button type="button" class="btn btn-danger btn-number btn-xs"  data-type="minus" data-field="delta">
+              <span class="glyphicon glyphicon-minus"></span>
+            </button>
+        </span>
+        <input type="text" name="delta" class="form-control input-number input-xs" value=<%=delta %> min="0.1" max="0.5">
+        <span class="input-group-btn">
+            <button type="button" class="btn btn-success btn-number btn-xs" data-type="plus" data-field="delta">
+                <span class="glyphicon glyphicon-plus"></span>
+            </button>
+        </span>
+    </div>
+	<p></p>
+        
+<div
+  class="fb-like"
+  data-share="true"
+  data-width="450"
+  data-show-faces="true">
+</div>
+        
+<script>
+var k=document.URL.search('key');
+if (k>0){
+  k=document.URL.substring(k);
+  if (k=='key=cristi'){
+    document.write("<a href='https://plot.ly/439/~scrissti/'>History</a>");
+  }
+}
+</script>
+</div>
+<script src="//code.jquery.com/jquery-1.11.2.min.js"></script> 
+<script src="/javascripts/app.js" type="text/javascript"></script>
+</body>
+</html>
